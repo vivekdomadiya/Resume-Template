@@ -7,7 +7,7 @@
         $lname = $_POST['lname'];
         $name = $fname.' '.$lname;
         $name = strip_tags(trim($name));
-				$name = str_replace(array("\r","\n"),array(" "," "),$name);
+		$name = str_replace(array("\r","\n"),array(" "," "),$name);
         $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
         $message = trim($_POST["message"]);
 
@@ -21,7 +21,7 @@
 
         // Set the recipient email address.
         // FIXME: Update this to your desired email address.
-        $recipient = "rc1199543@gmail.com";
+        $recipient = "domadia.vivek11@gmail.com";
 
         // Set the email subject.
         $subject = "New contact from $name";

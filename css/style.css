@@ -12,9 +12,9 @@ Table of content
 3. Navigation
 4. Home
 5. About
-6. Services
+6. Education
 7. skills
-8. Resume
+8. Project
 9. Contact
 10. Footer
 11. Mediaqueries
@@ -490,7 +490,7 @@ About
 
 
 /*----------------------------------------
-Services
+Education
 ----------------------------------------*/
 .single-service {
 	padding: 10px;
@@ -535,6 +535,16 @@ Services
 .single-service p {
     margin-top: 12px;
     font-size: 14px;
+}
+.service-icon .fas {
+    font-size: 44px;
+    line-height: 70px;
+}
+.single-service:hover .service-icon .fas {
+    -webkit-transform: rotateY(360deg);
+    -moz-transform: rotateY(360deg);
+    -ms-transform: rotateY(360deg);
+    transform: rotateY(360deg);
 }
 
 
@@ -640,19 +650,8 @@ skills
 
 
 /*----------------------------------------
-Resume
+Project
 ----------------------------------------*/
-
-.service-icon .fas {
-    font-size: 44px;
-    line-height: 70px;
-}
-.single-service:hover .service-icon .fas {
-    -webkit-transform: rotateY(360deg);
-    -moz-transform: rotateY(360deg);
-    -ms-transform: rotateY(360deg);
-    transform: rotateY(360deg);
-}
 
 
 /*----------------------------------------
@@ -695,7 +694,7 @@ Contact
 }
 .contact-item .c-text h6 {
 	margin: 0;
-	word-break: break-all;
+	overflow: hidden;
 }
 
 #contact-form {
