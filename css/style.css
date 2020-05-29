@@ -22,7 +22,7 @@ Table of content
 ------------------------------------------------------*/
 
 /*----------------------------------------
-General Styles
+1. General Styles
 ----------------------------------------*/
 
 html, body {
@@ -178,7 +178,7 @@ img {
 
 
 /*----------------------------------------
-Pre Loader
+2. Pre Loader
 ----------------------------------------*/
 
 #preloader {
@@ -227,7 +227,7 @@ Pre Loader
 
 
 /*----------------------------------------
-Navigation
+3. Navigation
 ----------------------------------------*/
 .nav-wrapper {
 	width: 100%;
@@ -318,7 +318,7 @@ Navigation
 }
 
 /*----------------------------------------
-Home
+4. Home
 ----------------------------------------*/
 .home {
 	position: relative;
@@ -399,7 +399,7 @@ Home
 
 
 /*----------------------------------------
-About
+5. About
 ----------------------------------------*/
 .about-content h2 {
 	margin-bottom: 30px;
@@ -490,7 +490,7 @@ About
 
 
 /*----------------------------------------
-Education
+6. Education
 ----------------------------------------*/
 .single-service {
 	padding: 10px;
@@ -549,7 +549,7 @@ Education
 
 
 /*----------------------------------------
-skills
+7. skills
 ----------------------------------------*/
 #skills h3{
 	text-align: center;
@@ -650,12 +650,12 @@ skills
 
 
 /*----------------------------------------
-Project
+8. Project
 ----------------------------------------*/
 
 
 /*----------------------------------------
-Contact
+0. Contact
 ----------------------------------------*/
 .contact-item {
 	position: relative;
@@ -763,7 +763,7 @@ textarea.input-field {
 
 
 /*----------------------------------------
-Footer
+10. Footer
 ----------------------------------------*/
 .footer {
 	padding-top: 60px;
@@ -793,7 +793,8 @@ Footer
 	color: #111;
 }
 .footer .copy-text {
-    margin: 8px 0;
+	margin: 8px 0;
+	padding: 0 10px;
     font-size: 15px;
     text-transform: capitalize;
 }
@@ -826,7 +827,7 @@ Footer
 
 
 /*----------------------------------------
-Mediaqueries
+11. Mediaqueries
 ----------------------------------------*/
 @media screen and (min-width: 768px) {
 
@@ -863,6 +864,12 @@ Mediaqueries
 	.home-carousel:hover .owl-prev.disabled .home-slider-btn {
 		opacity: .4;
 	}
+	.service-bordered {
+		border-left: 1px solid #dfdfdf;
+	}
+	.services-separator {
+		display: block;
+	}
 }
 
 @media (min-width: 992px) {
@@ -871,19 +878,11 @@ Mediaqueries
 		padding-left: 20px;
 	}
 
-	.single-service.bordered {
-		border-right: 1px solid #dfdfdf;
-		border-left: 1px solid #dfdfdf;
-	}
-	.services-separator {
-		display: block;
-	}
-
 }
 
 
 /*----------------------------------------
-keyframes animation
+12. keyframes animation
 ----------------------------------------*/
 
 
