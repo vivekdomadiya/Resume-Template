@@ -4,37 +4,26 @@ Author: Vivek Domadia
 Version: 1.0
 Design and Developed by: vivek
 
-NOTE: This is the main javascript file for the template
-
 =========================================================================*/
 
 $(function(){
     "use strict";
     
-          // Define Some Elements
-          var allWindow = $(window),
+        // Define Some Elements
+        var allWindow = $(window),
             body = $('body'),
             top = allWindow.scrollTop(),
             navBar = $(".nav-wrapper");
     
     /*------------------------------------------------
-      Javascript Function for The Preloader
+        Javascript Function for The Preloader
     --------------------------------------------------*/
     
-       $('#preloader').delay(500).fadeOut('slow'); // will fade out the white DIV that covers the website.
-
-      // PAGE LOADER
-      jQuery('#grid-container').on('initComplete.cbp', function () {
-        if ($('#ajax-tab-container').length) {
-          $('#ajax-tab-container').easytabs({
-            tabs: 'header nav ul li'
-          });
-        }
-      });
+        $('#preloader').delay(500).fadeOut('slow');
     
     
     /*-----------------------------------------------------
-      Javascript Function To check Aniamtion support
+        Javascript Function To check Aniamtion support
     -------------------------------------------------------*/
     
         var animation = false,
@@ -60,7 +49,7 @@ $(function(){
     
     
     /*-----------------------------------------------------
-      Javascript Function For Smooth Mouse Scrolling
+        Javascript Function For Smooth Mouse Scrolling
     -------------------------------------------------------*/
     
         jQuery.scrollSpeed = function(step, speed) {
@@ -134,12 +123,12 @@ $(function(){
     
         // initialize Smooth Scrolling Only in Modern browsers
         if(animation) {
-            jQuery.scrollSpeed(50, 700);
+            jQuery.scrollSpeed(50, 1000);
         }
     
     
     /*---------------------------------------------------------------------
-      Javascript Function For Sticky Navigation Bar AND SMOOTH SCROLLING
+        Javascript Function For Sticky Navigation Bar AND SMOOTH SCROLLING
     ----------------------------------------------------------------------*/
     
         // Define stikyNav Function
@@ -191,7 +180,7 @@ $(function(){
         
     
     /*---------------------------------------------------------------------
-      Javascript Function for Hide Navbar Dropdown After Click On Links
+        Javascript Function for Hide Navbar Dropdown After Click On Links
     -------------------------------------------------------------------*/
     
         var navLinks = navBar.find(".navbar-collapse ul li a");
@@ -208,7 +197,7 @@ $(function(){
     
     
     /*----------------------------------------------------------------
-      Javascript Function For Change active Class on navigation bar
+        Javascript Function For Change active Class on navigation bar
     -----------------------------------------------------------------*/
     
         var sections = $('.one-page-section'),
@@ -243,7 +232,7 @@ $(function(){
     
     
     /*---------------------------------------------------
-      Javascript Function FOR PARALLAX EFFECT
+        Javascript Function FOR PARALLAX EFFECT
     ---------------------------------------------------*/
     
         // create variables
@@ -271,56 +260,6 @@ $(function(){
     
           });
         };
-    
-    
-    /*-----------------------------------------------------------------
-      Javascript Function for PROGRESS BAR LINES  SCRIPT
-    ------------------------------------------------------------------*/
-    
-        var linesHead = $(".skills-section"),
-            line = $(".progress-bar-line");
-            
-        //Progress Bars function
-        function progressFunction(e) {
-    
-          if ( linesHead.length ) {
-    
-            if (!linesHead.hasClass("done")) {
-    
-              var linesHeadTop = linesHead.offset().top,
-                  top = allWindow.scrollTop(),
-                  winH = allWindow.height() - 160;
-    
-              if (top >= linesHeadTop - winH) {
-    
-                linesHead.addClass("done");
-                $.each( line, function( i, val ) {
-    
-                var thisLine = $(this),
-                  value = thisLine.data("percent"),
-                  progressCont = $(thisLine).closest('.progress-bar-linear').find(".progress-cont span");
-    
-                  thisLine.css("width",value + "%");
-                  progressCont.html(value + "%")
-    
-                });
-              }
-            }
-          }
-        } //End progressFunction Fuction
-    
-    
-        function scrollFunctions() {
-          stikyNav();
-          ChangeClass();
-          parallax();
-          progressFunction();
-        }
-    
-        // add Event listener to window
-        allWindow.on('scroll', function() {
-          scrollFunctions();
-        });
     
     
     /*------------------------------------------
@@ -495,22 +434,72 @@ $(function(){
 
       // Show animated elements
       animateElements();
-      $(window).scroll(animateElements);
-      
-      
-      
+      $(window).scroll(animateElements);   
 
     }); //end document ready function
     
+
+
+    /*-----------------------------------------------------------------
+        Javascript Function for PROGRESS BAR LINES  SCRIPT
+    ------------------------------------------------------------------*/
     
+        var linesHead = $(".skills-section"),
+        line = $(".progress-bar-line");
+        
+        //Progress Bars function
+        function progressFunction(e) {
+
+        if ( linesHead.length ) {
+
+            if (!linesHead.hasClass("done")) {
+
+            var linesHeadTop = linesHead.offset().top,
+                top = allWindow.scrollTop(),
+                winH = allWindow.height() - 160;
+
+            if (top >= linesHeadTop - winH) {
+
+                linesHead.addClass("done");
+                $.each( line, function( i, val ) {
+
+                var thisLine = $(this),
+                value = thisLine.data("percent"),
+                progressCont = $(thisLine).closest('.progress-bar-linear').find(".progress-cont span");
+
+                thisLine.css("width",value + "%");
+                progressCont.html(value + "%")
+
+                });
+            }
+            }
+        }
+        } //End progressFunction Fuction
+
+
+        function scrollFunctions() {
+        stikyNav();
+        ChangeClass();
+        parallax();
+        progressFunction();
+        }
+
+        // add Event listener to window
+        allWindow.on('scroll', function() {
+        scrollFunctions();
+        });
+
+
     /*------------------------------------------------------------------------
-     Javascript Function for Validate and Submit the CONTACT Form Using AJAX
+        Javascript Function for Validate and Submit the CONTACT Form Using AJAX
     -------------------------------------------------------------------------*/
     
         // Get the form.
         var form = $('#contact-form'),
+            sendBtn = $("#sendBtn"),
             reg = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})$/,
             inputs = $(".input-field");
+            
     
         function validateForm() {
     
@@ -553,19 +542,21 @@ $(function(){
         // Set up an event listener for the contact form.
         $(form).on('submit',function(event) {
     
-          // Stop the browser from submitting the form.
-          event.preventDefault();
-    
-          // Serialize the form data.
-          var formData = $(form).serialize();
-    
-          // Submit the form using AJAX.
-          $.ajax({
-              type: 'POST',
-              url: form.attr('action'),
-              data: formData
-          }).done(function(response) {
-    
+            // Stop the browser from submitting the form.
+            event.preventDefault();
+
+            sendBtn.html("Message Sending...")
+        
+            // Serialize the form data.
+            var formData = $(form).serialize();
+        
+            // Submit the form using AJAX.
+            $.ajax({
+                type: 'POST',
+                url: form.attr('action'),
+                data: formData
+            }).done(function(response) {
+        
             // Make sure that the formMessages div has the 'success' class.
             formMessages.removeClass('error');
             formMessages.addClass('success');
@@ -593,6 +584,9 @@ $(function(){
               }
     
           });
+
+          sendBtn.html("Send Message")
+
         });
     
     
