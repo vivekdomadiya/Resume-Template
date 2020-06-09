@@ -562,7 +562,7 @@ $(function(){
             formMessages.addClass('success');
     
             // Set the message text.
-            formMessages.text(response);
+            formMessages.text("Thank You! Your message has been sent.");
     
             // Clear the form.
             $('#Fname').val('');
@@ -577,11 +577,7 @@ $(function(){
               formMessages.addClass('error');
     
               // Set the message text.
-              if (data.responseText !== '') {
-                  formMessages.text(data.responseText);
-              } else {
-                  formMessages.text('Sorry! An error occured and your message could not be sent.');
-              }
+              formMessages.text('Sorry! An error occured and your message could not be sent.');
     
           });
 
