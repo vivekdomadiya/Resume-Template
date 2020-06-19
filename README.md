@@ -2,4 +2,4 @@
 
 Simple Html web page for resume
 
-[See Live Preview](http://vivekdomadia.ml/)
+[See Live Preview](http://vivekdomadia.engineer/)
