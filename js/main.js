@@ -484,7 +484,8 @@ $(function () {
   var form = $("#contact-form"),
     sendBtn = $("#sendBtn"),
     reg = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})$/,
-    inputs = $(".input-field");
+    inputs = $(".input-field"),
+    formMessages = $("#form-message");
 
   function validateForm() {
     if ($(this).is("#email")) {
@@ -520,24 +521,34 @@ $(function () {
   });
 
   // Get the messages div.
-  var formMessages = $("#form-message");
-
-  // Set up an event listener for the contact form.
   $(form).on("submit", function (event) {
     // Stop the browser from submitting the form.
     event.preventDefault();
 
-    sendBtn.html("Send Message");
+    sendBtn.html("Message Sending...");
     sendBtn.attr("disabled", "disabled");
+    formMessages.html("");
+
+    const name = $("#Fname").val() + $("#Lname").val(),
+      email = $("#email").val(),
+      message = $("#message").val();
+
+    const subject = `New contact from ${name}`;
+    const text = `Name: ${name}\n Email: ${email}\n\n Message:\n${message}\n`;
 
     // Serialize the form data.
-    var formData = $(form).serialize();
+    var formData = {
+      to: "domadia.vivek11@gmail.com",
+      subject,
+      text,
+    };
 
     // Submit the form using AJAX.
     $.ajax({
       type: "POST",
-      url: "/send_form_email.php",
-      data: formData,
+      url: "https://mailer-vd.herokuapp.com/send-email",
+      data: JSON.stringify(formData),
+      contentType: "application/json; charset=utf-8",
     })
       .done(function (response) {
         // Make sure that the formMessages div has the 'success' class.
@@ -545,13 +556,16 @@ $(function () {
         formMessages.addClass("success");
 
         // Set the message text.
-        formMessages.text(response);
+        formMessages.text("Message sent successfully.");
 
         // Clear the form.
         $("#Fname").val("");
         $("#Lname").val("");
         $("#email").val("");
         $("#message").val("");
+
+        sendBtn.html("Send Message");
+        sendBtn.removeAttr("disabled");
       })
       .fail(function (data) {
         // Make sure that the formMessages div has the 'error' class.
@@ -559,10 +573,10 @@ $(function () {
         formMessages.addClass("error");
 
         // Set the message text.
-        formMessages.text(data.responseTxt);
-      });
+        formMessages.text("Message could not sent...!");
 
-    sendBtn.html("Send Message");
-    sendBtn.removeAttr("disabled");
+        sendBtn.html("Send Message");
+        sendBtn.removeAttr("disabled");
+      });
   });
 });
